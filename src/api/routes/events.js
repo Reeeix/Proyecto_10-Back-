@@ -15,6 +15,5 @@ eventsRouter.get("/:id", getEventById);
 eventsRouter.post("/", isAuth, upload.single("poster"), createEvent);
 eventsRouter.put("/:id", isAuth, updateEvent);
 eventsRouter.post("/:eventId/attend", isAuth, addAttendee);
-eventsRouter.delete("/:id", isAuth, deleteEvent);
 
 module.exports = eventsRouter;

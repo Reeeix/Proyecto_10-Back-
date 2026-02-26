@@ -133,30 +133,6 @@ const addAttendee = async (req, res, next) => {
   }
 };
 
-const deleteEvent = async (req, res, next) => {
-  try {
-    const { id } = req.params;
-
-    const event = await Event.findById(id);
-
-    if (!event) {
-      return res.status(404).json("Evento no encontrado");
-    }
-
-    if (event.createdBy.toString() !== req.user._id.toString()) {
-      return res
-        .status(403)
-        .json("No tienes permiso para eliminar este evento");
-    }
-
-    await Event.findByIdAndDelete(id);
-
-    return res.status(200).json("Evento eliminado correctamente");
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json("Error al eliminar el evento");
-  }
-};
 
 module.exports = {
   getEvents,
@@ -164,6 +140,5 @@ module.exports = {
   getEventById,
   createEvent,
   updateEvent,
-  addAttendee,
-  deleteEvent
+  addAttendee
 };
